@@ -9,63 +9,21 @@
         <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
         <style>
             /* CSS */
-            #buttonFormat{
-                color:#7c9c84;
-                font-size:25px;
-                font-family:Copperplate;
-                background-color:#cadbce;
-                border-style:double;
-                border-color:#a0bda7;
-                border-width:15px;
-                border-radius:20px;
-                line-height: 90px;
-                text-align:center;
-            }
             
-            #subButton{
-                color:#5c6c8a;
-                font-size:20px;
-                font-family:Optima;
-                border-width:15px;
-                border-radius:20px;
-                text-align:center;
-            }
-            
-            .flex-container {
-                display: flex;
-                justify-content: center;
-            }
         </style>
         
-        <title>Title</title>
+        <title>Extract Dog Names</title>
     </head>
     <body>
         <!-- HTML -->
-        <div class="flex-container">
-            <button id = "buttonFormat"> Click Here for the Rules </button>
-        </div>
-         <p id="subButton"> </p>
+        
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
         <!--<script src="script.js"></script>-->
         <script>
             // JS
             
-            
-            var ptest = document.getElementById("subButton");
-            ptest.addEventListener("mouseover", function( event2 ) {
-              // highlight the mouseover target
-              event.target.style.color = "#b57c76";
-            });
-            
-            
-            document.querySelector("button").addEventListener("click", function(){
-                document.getElementById("subButton").innerHTML = "Hello and Welcome! Today, You'll be entering a single letter and I'll tell you a good dog name for that letter! Try a letter now!";
-            })
-            
-            
-            
-            
-            document.addEventListener("keypress", function(event){
+            var code = `
                 if (event.key == "a"){
                     var result = document.createElement('p')
                     result.style.backgroundColor = "#a595ba";
@@ -162,7 +120,7 @@
                     result12.style.textAlign = "center"
                     result12.style.fontFamily = "Optima"
                     result12.style.fontSize = "20px"
-                    result12.innerHTML = (" Female: Kathy, Kaydence, Khaleesi   ||    Male: Kent, Kingston, Kylian   ||   Keep pressing to try other letters!")
+                    result12.innerHTML = (" Female: Kathy, Kaydence, Khaleesi    ||    Male: Kent, Kingston, Kylian   ||   Keep pressing to try other letters!")
                     document.body.appendChild(result12);
                 }
                 if (event.key == "l"){
@@ -171,7 +129,7 @@
                     result13.style.textAlign = "center"
                     result13.style.fontFamily = "Optima"
                     result13.style.fontSize = "20px"
-                    result13.innerHTML = (" Female:  Lainey, Letitia, Lyla   ||    Male: Liam, Landon, Lionel   ||   Keep pressing to try other letters!")
+                    result13.innerHTML = (" Female:  Lainey, Letitia, Lyla    ||    Male: Liam, Landon, Lionel   ||   Keep pressing to try other letters!")
                     document.body.appendChild(result13);
                 }
                 if (event.key == "m"){
@@ -198,7 +156,7 @@
                     result16.style.textAlign = "center"
                     result16.style.fontFamily = "Optima"
                     result16.style.fontSize = "20px"
-                    result16.innerHTML = (" Female:  Ophelia, Ori, Odell     ||    Male: Oakley, Ozzy, Orbie    ||   Keep pressing to try other letters!")
+                    result16.innerHTML = (" Female: Ophelia, Ori, Odell    ||    Male: Oakley, Ozzy, Orbie   ||   Keep pressing to try other letters!")
                     document.body.appendChild(result16);
                 }
                 if (event.key == "p"){
@@ -216,7 +174,7 @@
                     result18.style.textAlign = "center"
                     result18.style.fontFamily = "Optima"
                     result18.style.fontSize = "20px"
-                    result18.innerHTML = (" Female: Quatia, Queenie, Quinby    ||    Male: Quincy, Quimby, Quentin    ||   Keep pressing to try other letters!")
+                    result18.innerHTML = (" Female: Quatia, Queenie, Quinby    ||    Male: Quincy, Quimby, Quentin   ||   Keep pressing to try other letters!")
                     document.body.appendChild(result18);
                 }
                 if (event.key == "r"){
@@ -243,7 +201,7 @@
                     result21.style.textAlign = "center"
                     result21.style.fontFamily = "Optima"
                     result21.style.fontSize = "20px"
-                    result21.innerHTML = (" Female: Trixie, Thyme, Tarah    ||    Male: Tai, Thorn, Tanton    ||   Keep pressing to try other letters!")
+                    result21.innerHTML = (" Female: Trixie, Thyme, Tarah    ||    Male: Tai, Thorn, Tanton   ||   Keep pressing to try other letters!")
                     document.body.appendChild(result21);
                 }
                 if (event.key == "u"){
@@ -300,47 +258,26 @@
                     result27.innerHTML = (" Female: Zara, Zenda, Zariyah    ||    Male: Zach, Zeno, Zenas   ||   Keep pressing to try other letters!")
                     document.body.appendChild(result27);
                 }
+            `;
+            
+            var femaleNames = [];
+            code.match(/Female.*\ \ \ \ \|\|/g).forEach(function(letter){
+                letter.substr(8,letter.length-14).split(", ").forEach(function(name){
+                    femaleNames.push(name);
+                });
             });
-            // 27 because I messed up at 6.. my bad!
-
-            // You're welcome. If you curious about how this was done, check out extract-names.html
-            var femaleNames = ["Annie", "Amber", "Aerie", "Bailey", "Blaire", "Bria", "Cassie", "Chanel", "Camille", "Daisey", "Dewey", "Derivia", "Eva", "Ember", "Elixir", "Farrah", "Fya", "Fairy", "Gaia", "Gemi", "Gypsy", "Hisako", "Heba", "Homa", "Indigo", "Ivy", "Izzy", "Jayda", "Jacqueline", "Judith", "Kathy", "Kaydence", "Khaleesi", " Lainey", "Letitia", "Lyla", "Myria", "Maggie", "Maya", "Nya", "Nadia", "Nekia", "Ophelia", "Ori", "Odell", "Pyper", "Pippin", "Primrose", "Quatia", "Queenie", "Quinby", "Rhea", "Remi", "Rosé", "Sylia", "Sydney", "Siena", "Trixie", "Thyme", "Tarah", "Umbria", "Uma", "Udelia", "Violetta", "Vivi", "Vixy", "Windia", "Whitney", "Wanda", "Xanadu", "Xia", "Ximena", "Yvonne", "Yara", "Yaletha", "Zara", "Zenda", "Zariyah"];
-            var maleNames = ["Ace", "Astro", "Arkin", "Bolt", "Becker", "Bane", "Cisco", "Conan", "Corey", "Duke", "Diesel", "Dane", "Eddie", "Enrique", "Echo", "Felix", "Fizz", "Flynn", "Gabriel", "Gizmo", "Gage", "Hanai", "Howell", "Helmer", "Ike", "Idris", "Isley", "Jasper", "Jax", "Jacques", "Kent", "Kingston", "Kylian", "Liam", "Landon", "Lionel", "Murphy", "Mohawk", "Moose", "Newley", "Noah", "Naval", "Oakley", "Ozzy", "Orbie", "Pretz", "Pierre", "Paxton", "Quincy", "Quimby", "Quentin", "Rhett", "Ray", "Ross", "Scott", "Scruff", "Samson", "Tai", "Thorn", "Tanton", "Ulysses", "Udo", "Ultrax", "Valentino", "Van", "Vance", "Wink", "Waylon", "Wilfred", "Xenon", "Xavion", "Xoai", "Yahto", "Yasir", "Yadiel", "Zach", "Zeno", "Zenas"];
+            console.log(femaleNames);
+            // ["Annie", "Amber", "Aerie", "Bailey", "Blaire", "Bria", "Cassie", "Chanel", "Camille", "Daisey", "Dewey", "Derivia", "Eva", "Ember", "Elixir", "Farrah", "Fya", "Fairy", "Gaia", "Gemi", "Gypsy", "Hisako", "Heba", "Homa", "Indigo", "Ivy", "Izzy", "Jayda", "Jacqueline", "Judith", "Kathy", "Kaydence", "Khaleesi", " Lainey", "Letitia", "Lyla", "Myria", "Maggie", "Maya", "Nya", "Nadia", "Nekia", "Ophelia", "Ori", "Odell", "Pyper", "Pippin", "Primrose", "Quatia", "Queenie", "Quinby", "Rhea", "Remi", "Rosé", "Sylia", "Sydney", "Siena", "Trixie", "Thyme", "Tarah", "Umbria", "Uma", "Udelia", "Violetta", "Vivi", "Vixy", "Windia", "Whitney", "Wanda", "Xanadu", "Xia", "Ximena", "Yvonne", "Yara", "Yaletha", "Zara", "Zenda", "Zariyah"]
             
             
-            //////////////////////////////////////////////////
-            //                  YOUR GOAL                   //
-            //////////////////////////////////////////////////
-            
-            // TASK 1: complete the `allNames` dataset. It should continue the pattern started below. The colors alternate purple/blue/pink, purple/blue/pink, etc
-            // OPTION 1: Work Harder. Keep copying/pasting until you have all names.
-            // OPTION 2: Work Smarter. Comment out the variable below and create it dynamically like in the demo.
-            var allNames = {
-                "a":{
-                    "female":["Annie", "Amber", "Aerie"],
-                    "male":["Ace", "Astro", "Arkin"],
-                    "color":"#a595ba" // purple
-                },
-                "b":{
-                    "female":["Bailey", "Blaire", "Bria"],
-                    "male":["Bolt", "Becker", "Bane"],
-                    "color":"#a8aae6" // blue
-                },
-                "c":{
-                    "female":["Cassie", "Chanel", "Camille"],
-                    "male":["Cisco", "Conan", "Corey"],
-                    "color":"#dab4db" // pink
-                },
-                "d":{
-                    "female":["Daisey", "Dewey", "Derivia"],
-                    "male":["Duke", "Diesel", "Dane"],
-                    "color":"#a595ba" // purple
-                }
-            };
-            
-            
-            // TASK 2: Refactor this program so that the EXACT same result is achieved, but using `allNames`.
-            
+            var maleNames = [];
+            code.match(/Male.*\ \ \ \|\|/g).forEach(function(letter){
+                letter.substr(6,letter.length-11).split(", ").forEach(function(name){
+                    maleNames.push(name);
+                });
+            });
+            console.log(maleNames);
+            // ["Ace", "Astro", "Arkin", "Bolt", "Becker", "Bane", "Cisco", "Conan", "Corey", "Duke", "Diesel", "Dane", "Eddie", "Enrique", "Echo", "Felix", "Fizz", "Flynn", "Gabriel", "Gizmo", "Gage", "Hanai", "Howell", "Helmer", "Ike", "Idris", "Isley", "Jasper", "Jax", "Jacques", "Kent", "Kingston", "Kylian", "Liam", "Landon", "Lionel", "Murphy", "Mohawk", "Moose", "Newley", "Noah", "Naval", "Oakley", "Ozzy", "Orbie", "Pretz", "Pierre", "Paxton", "Quincy", "Quimby", "Quentin", "Rhett", "Ray", "Ross", "Scott", "Scruff", "Samson", "Tai", "Thorn", "Tanton", "Ulysses", "Udo", "Ultrax", "Valentino", "Van", "Vance", "Wink", "Waylon", "Wilfred", "Xenon", "Xavion", "Xoai", "Yahto", "Yasir", "Yadiel", "Zach", "Zeno", "Zenas"]
             
         </script>
     </body>
