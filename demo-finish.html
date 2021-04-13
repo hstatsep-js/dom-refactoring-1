@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+         <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+        <style>
+            /* CSS */
+            
+            html,body{
+                background-color:cyan;
+            }
+            
+            
+            h1,h2,h3{
+                text-align:center;
+            }
+            
+            input,button{
+                display:block;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            
+            #RandomNames{
+                color:red;
+            }
+            
+            #inputdecoration{
+                border:15px solid red;
+            }
+            
+            img{
+                width:300px;
+                height:350px;
+            }
+            
+            .shepard{
+                border:10px dotted green;
+            }
+            
+            .samoyed{
+                border:10px double black;
+            }
+            
+            .gold{
+                width:470px;
+                height:350px;
+                border:10px dashed blue;
+            }
+            
+            .BMD{
+                width:250px;
+                border:10px solid red;
+            }
+
+        </style>
+
+        <title>Title</title>
+    </head>
+    <body>
+        <!-- HTML -->
+        <h1><u>Name Generator for Dogs</u></h1>
+        <br>
+
+        <h3 id = "RandomNames">Name</h3>
+
+        <h2>Please type in the letter you want the name to start with.</h2>
+        <h2 id = "info">The name will be different if you type in the same letter a couple of times.</h2>
+
+        <br>
+
+        <input id = "inputdecoration">
+
+        <br>
+
+        <Button>Reset</Button>
+
+        <br>
+
+        <img class = "shepard" src = "https://www.thesprucepets.com/thmb/VJpRmcCyJCRbVmox-yx3FqUJWZ8=/1000x1000/smart/filters:no_upscale()/breed_profile_husky_1118000_hero_690-0158e427a4734e0fae59e2e91a7fe6e4.jpg">
+        <img class = "samoyed"src = "https://www.espree.com/sites/default/files/2019-10/Samoyed.png">
+        <img class = "gold" src = "https://vetstreet.brightspotcdn.com/dims4/default/d742db0/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F98%2Fd98250a0d311e0a2380050568d634f%2Ffile%2FGolden-Retriever-3-645mk062411.jpg ">
+        <img class="BMD" src = "https://www.thesprucepets.com/thmb/zJCp1vAvWG4y4NbdoEjcTHDMbLA=/1000x1000/smart/filters:no_upscale()/breed_profile_bernese_4427890_hero_02_2216-5bdff65a6a71401da81c472a6ef03fb8.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <!--<script src="script.js"></script>-->
+        <script>
+            // JS
+            
+            var heading = document.querySelector("#RandomNames");
+
+            var dogNames = ["Ace","Aero","Abby","Bella", "Benji", "Billy", "Casper", "Casey", "CJ", "Dexter", "Drew", "Daphne", "Emma", "Evan", "Eddie", "Felix", "Flash", "Fanny", "George", "Grace", "Gypsy", "Hannah", "Henry", "Hunter", "Ivy", "Ian", "Issac", "Jack", "Jasper", "Julia", "King", "Katie", "Koda", "Leo", "Lucy", "Logan", "Max", "Maggie", "Maximus", "Ned", "Nala", "Noah", "Olivia", "Oliver", "Oreo", "Parker", "Pebbles", "Peter", "Qunita", "Quan", "Quron", "Ralph", "Rosie", "Ricky", "Sasha", "Sierra", "Simon", "Theo", "Toby", "Tasha", "Uriel", "Usher", "Ursula", "Vicky", "Victor", "Vincent", "Walter", "Winnie", "William", "Xavier", "Xander", "Xandra", "Yumi", "Yara", "Yosef", "Zola", "Zane", "Zeke"];
+            
+            var NamesA = []
+            var NamesB = []
+            var NamesC = []
+            var NamesD = []
+            var NamesE = []
+            var NamesF = []
+            var NamesG = []
+            var NamesH = []
+            var NamesI = []
+            var NamesJ = []
+            var NamesK = []
+            var NamesL = []
+            var NamesM = []
+            var NamesN = []
+            var NamesO = []
+            var NamesP = []
+            var NamesQ = []
+            var NamesR = []
+            var NamesS = []
+            var NamesT = []
+            var NamesU = []
+            var NamesV = []
+            var NamesW = []
+            var NamesX = []
+            var NamesY = []
+            var NamesZ = []
+            
+            // var dogNamesSorted = {
+            //     "a":["Ace","Aero","Abby"],
+            //     "b":["Bella", "Benji", "Billy"]
+            // }
+            
+            // dynamically create dataset
+            var dogNamesSorted = {};
+            dogNames.forEach(function(dogName){
+                var dogNameInitial = dogName[0].toLowerCase();
+                if(!dogNamesSorted.hasOwnProperty(dogNameInitial)){
+                    dogNamesSorted[dogNameInitial] = [];
+                    // dogNamesSorted[dogNameInitial].push(dogName);
+                } 
+                dogNamesSorted[dogNameInitial].push(dogName);
+                
+            });
+            // console.log(dogNamesSorted);
+            
+            
+            //.addEventListener(event,functionName) OR .addEventListener(event,function(){code}) = similar to transformations in css; certain code will occur when user clicks or presses something
+            
+            //Anonymous Function is where there is no function name
+            // Ex: .addEventListener(event,function(){code})
+            
+            function isLetter(str) {
+                return str.length === 1 && str.match(/[a-z]/i);
+            }
+
+            document.addEventListener("keypress",function(event){
+                if(isLetter(event.key)){
+                    heading.innerHTML = getName(event.key);
+                } else {
+                    alert("Invalid Response! Please type in a letter!!");
+                }
+            });
+            
+            function getName(firstLetter){
+                var possibleDogNames = dogNamesSorted[firstLetter];
+                    //Randomizes the names that were pushed into the new array
+                var name = possibleDogNames[Math.floor(Math.random()*possibleDogNames.length)];
+                // console.log(name);
+                return name;
+            }
+            
+            
+            // heading.innerHTML = getName("a");
+                //   heading.innerHTML = Names1;
+            
+            function names(){
+                // when user inputs a certain key
+                // if(event.key === "a" || event.key === "A"){
+                //     //Loops through array and push names that start with the letter A into variable
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("A")){
+                //              NamesA.push(dogNames[i])
+                //          }
+                //     //Randomizes the names that were pushed into the new array
+                //       Names1 = NamesA[Math.floor(Math.random()*NamesA.length)];
+                //     // Prints out the randomized name
+                //       heading.innerHTML = Names1;
+                //      }
+                // }else if(event.key === "b" || event.key === "B"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("B")){
+                //              NamesB.push(dogNames[i])
+                //          }
+                //       Names3 = NamesB[Math.floor(Math.random()*NamesB.length)];
+                //       heading.innerHTML = Names3;
+                //      }
+                // }else if(event.key === "c" || event.key === "C"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("C")){
+                //              NamesC.push(dogNames[i])
+                //          }
+                //       Names5 = NamesC[Math.floor(Math.random()*NamesC.length)];
+                //       heading.innerHTML = Names5;
+                //      }
+                // }else if(event.key === "d" || event.key === "D"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("D")){
+                //              NamesD.push(dogNames[i])
+                //          }
+                //       Names7 = NamesD[Math.floor(Math.random()*NamesD.length)];
+                //       heading.innerHTML = Names7;
+                //      }
+                // }else if(event.key === "e" || event.key === "E"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("E")){
+                //              NamesE.push(dogNames[i])
+                //          }
+                //       Names9 = NamesE[Math.floor(Math.random()*NamesE.length)];
+                //       heading.innerHTML = Names9;
+                //     }
+                // }else if(event.key === "f" || event.key === "F"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("F")){
+                //              NamesF.push(dogNames[i])
+                //          }
+                //       Names11 = NamesF[Math.floor(Math.random()*NamesF.length)];
+                //       heading.innerHTML = Names11;
+                //     }
+                // }else if(event.key === "g" || event.key === "G"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("G")){
+                //              NamesG.push(dogNames[i])
+                //          }
+                //       Names13 = NamesG[Math.floor(Math.random()*NamesG.length)];
+                //       heading.innerHTML = Names13;
+                //     }
+                // }else if(event.key === "h" || event.key === "H"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("H")){
+                //              NamesH.push(dogNames[i])
+                //          }
+                //       Names15 = NamesH[Math.floor(Math.random()*NamesH.length)];
+                //       heading.innerHTML = Names15;
+                //     }
+                // }else if(event.key === "i" || event.key === "I"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("I")){
+                //              NamesI.push(dogNames[i])
+                //          }
+                //       Names17 = NamesI[Math.floor(Math.random()*NamesI.length)];
+                //       heading.innerHTML = Names17;
+                //     }
+                // }else if(event.key === "j" || event.key === "J"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("J")){
+                //              NamesJ.push(dogNames[i])
+                //          }
+                //       Names19 = NamesJ[Math.floor(Math.random()*NamesJ.length)];
+                //       heading.innerHTML = Names19;
+                //     }
+                // }else if(event.key === "k" || event.key === "K"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("K")){
+                //              NamesK.push(dogNames[i])
+                //          }
+                //       Names21 = NamesK[Math.floor(Math.random()*NamesK.length)];
+                //       heading.innerHTML = Names21;
+                //     }
+                // }else if(event.key === "l" || event.key === "L"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("L")){
+                //              NamesL.push(dogNames[i])
+                //          }
+                //       Names23 = NamesL[Math.floor(Math.random()*NamesL.length)];
+                //       heading.innerHTML = Names23;
+                //     }
+                // }else if(event.key === "m" || event.key === "M"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("M")){
+                //              NamesM.push(dogNames[i])
+                //          }
+                //       Names25 = NamesM[Math.floor(Math.random()*NamesM.length)];
+                //       heading.innerHTML = Names25;
+                //     }
+                // }else if(event.key === "n" || event.key === "N"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("N")){
+                //              NamesN.push(dogNames[i])
+                //          }
+                //       Names27 = NamesN[Math.floor(Math.random()*NamesN.length)];
+                //       heading.innerHTML = Names27;
+                //     }
+                // }else if(event.key === "o" || event.key === "O"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("O")){
+                //              NamesO.push(dogNames[i])
+                //          }
+                //       Names29 = NamesO[Math.floor(Math.random()*NamesO.length)];
+                //       heading.innerHTML = Names29;
+                //     }
+                // }else if(event.key === "p" || event.key === "P"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("P")){
+                //              NamesP.push(dogNames[i])
+                //          }
+                //       Names31 = NamesP[Math.floor(Math.random()*NamesP.length)];
+                //       heading.innerHTML = Names31;
+                //     }
+                // }else if(event.key === "q" || event.key === "Q"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("Q")){
+                //              NamesQ.push(dogNames[i])
+                //          }
+                //       Names33 = NamesQ[Math.floor(Math.random()*NamesQ.length)];
+                //       heading.innerHTML = Names33;
+                //     }
+                // }else if(event.key === "r" || event.key === "R"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("R")){
+                //              NamesR.push(dogNames[i])
+                //          }
+                //       Names35 = NamesR[Math.floor(Math.random()*NamesR.length)];
+                //       heading.innerHTML = Names35;
+                //     }
+                // }else if(event.key === "s" || event.key === "S"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("S")){
+                //              NamesS.push(dogNames[i])
+                //          }
+                //       Names37 = NamesS[Math.floor(Math.random()*NamesS.length)];
+                //       heading.innerHTML = Names37;
+                //     }
+                // }else if(event.key === "t" || event.key === "T"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("T")){
+                //              NamesT.push(dogNames[i])
+                //          }
+                //       Names39 = NamesT[Math.floor(Math.random()*NamesT.length)];
+                //       heading.innerHTML = Names39;
+                //     }
+                // }else if(event.key === "u" || event.key === "U"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("U")){
+                //              NamesU.push(dogNames[i])
+                //          }
+                //       Names41 = NamesU[Math.floor(Math.random()*NamesU.length)];
+                //       heading.innerHTML = Names41;
+                //     }
+                // }else if(event.key === "v" || event.key === "V"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("V")){
+                //              NamesV.push(dogNames[i])
+                //          }
+                //       Names43 = NamesV[Math.floor(Math.random()*NamesV.length)];
+                //       heading.innerHTML = Names43;
+                //     }
+                // }else if(event.key === "w" || event.key === "W"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("W")){
+                //              NamesW.push(dogNames[i])
+                //          }
+                //       Names45 = NamesW[Math.floor(Math.random()*NamesW.length)];
+                //       heading.innerHTML = Names45;
+                //     }
+                // }else if(event.key === "x" || event.key === "X"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("X")){
+                //              NamesX.push(dogNames[i])
+                //          }
+                //       Names47 = NamesX[Math.floor(Math.random()*NamesX.length)];
+                //       heading.innerHTML = Names47;
+                //     }
+                // }else if(event.key === "y" || event.key === "Y"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("Y")){
+                //              NamesY.push(dogNames[i])
+                //          }
+                //       Names51 = NamesY[Math.floor(Math.random()*NamesY.length)];
+                //       heading.innerHTML = Names51;
+                //     }
+                // }else if(event.key === "z" || event.key === "Z"){
+                //      for (i=0;i<dogNames.length;i++){
+                //          if(dogNames[i].startsWith("Z")){
+                //              NamesZ.push(dogNames[i])
+                //          }
+                //       Names53 = NamesZ[Math.floor(Math.random()*NamesZ.length)];
+                //       heading.innerHTML = Names53;
+                //     }
+                // }else{
+                //     alert("Invalid Response! Please type in a letter!!")
+                // }
+            }
+            
+            //Resets Name when Reset Button is Clicked On
+            document.querySelector("button").addEventListener("click",function(){
+                heading.innerHTML = "Name";
+            })
+            
+            document.querySelector("h2").addEventListener("mouseover",function(){
+                document.querySelector("h2").style.color = "Blue";
+            })
+            
+            document.querySelector("h2").addEventListener("mouseout",function(){
+                document.querySelector("h2").style.color = "Black";
+            })
+            
+            document.querySelector("#info").addEventListener("mouseover",function(){
+                document.querySelector("#info").style.color = "Purple";
+            })
+            
+            document.querySelector("#info").addEventListener("mouseout",function(){
+                document.querySelector("#info").style.color = "Black";
+            })
+
+
+        </script>
+    </body>
+</html>
